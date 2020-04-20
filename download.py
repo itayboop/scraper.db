@@ -1,6 +1,12 @@
 import requests
 
 
+class Usernames():
+    def init(self):
+        pass
+
+
+
 def import_table(section, start_char1, start_char2, end_char1, end_char2, path):
     url = "https://beta.wikiversity.org/w/index.php?title=%D7%9C%D7%99%D7%9E%D7%95%D7%93%D7%99%D7%9E%D7%97%D7%A9%D7%91%D7%99%D7%9D%D7%91%D7%A9%D7%99%D7%98%D7%AA%D7%91%D7%98%D7%90&action=edit&section=" + section
 
@@ -14,12 +20,14 @@ def import_table(section, start_char1, start_char2, end_char1, end_char2, path):
             start_of_table_index = letter
             break
 
+
     for letter in range(len(page) - 1, 0, -1):
         if page[letter] == end_char1 and page[letter - 1] == end_char2:
             end_of_table_index = letter
             break
 
     page = page[start_of_table_index:end_of_table_index]
+
 
     with open(path, 'w') as file:
         file.write(page)
@@ -51,8 +59,8 @@ def main():
     table_context = read_file("page_context")
     usernames = username_slice(table_context)
 
-    print(type(usernames.values()))
+    print(usernames.keys())
 
 
-if __name__ == 'main':
+if name == 'main':
     main()
