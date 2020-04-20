@@ -29,13 +29,13 @@ def username_slice(table):
     usernames = {}
     break_point = 0
 
-    for times in range(page.count('[[User:')):
-        f_index = page.find("[[User:", break_point) + 7
-        l_index = page.find("|", f_index)
+    for times in range(table.count('[[User:')):
+        f_index = table.find("[[User:", break_point) + 7
+        l_index = table.find("|", f_index)
 
         break_point = l_index
 
-        usernames[page[f_index:l_index]] = {}
+        usernames[table[f_index:l_index]] = {}
 
     return usernames
 
@@ -47,9 +47,16 @@ def read_file(path):
 
 
 def user_info(username, table_context):
-    index = table_context.find(username)
+    subjects_and_points = {}
+    table_context = table_context.split('\n')
 
-    for row in range(len(table)):
+    for row in range(len(table_context)):
+        user_name_index = table_context[row].find(username)
+
+        if user_name_index != -1:
+            for subject_index in range(2, 8, 2):
+                subjects_and_points[table_context[row + subject_index][2:]] = table_context[row + subject_index + 1][2:]
+            return subjects_and_points
 
 
 def main():
@@ -57,7 +64,8 @@ def main():
     table_context = read_file("page_context")
     usernames = username_slice(table_context)
 
-    print(usernames.keys())
+    for username in usernames.keys():
+        usernames[username] = user_info(username, table_context)
 
 
 if __name__ == '__main__':
