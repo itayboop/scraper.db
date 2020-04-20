@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cbbfcf-3825-474c-8875-b3e99aae55f8" name="Default Changelist" comment="added first version from Rei Nagar">
+    <list default="true" id="b4cbbfcf-3825-474c-8875-b3e99aae55f8" name="Default Changelist" comment="finished taking the information from the users except the titles and saving it on a dictionary">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/download.py" beforeDir="false" afterPath="$PROJECT_DIR$/download.py" afterDir="false" />
     </list>
@@ -71,6 +71,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added first version from Rei Nagar" />
