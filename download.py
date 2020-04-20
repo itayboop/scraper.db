@@ -2,7 +2,7 @@ import requests
 
 
 def import_table(section, start_char1, start_char2, end_char1, end_char2, path):
-    url = "https://beta.wikiversity.org/w/index.php?title=%D7%9C%D7%99%D7%9E%D7%95%D7%93%D7%99_%D7%9E%D7%97%D7%A9%D7%91%D7%99%D7%9D_%D7%91%D7%A9%D7%99%D7%98%D7%AA_%D7%91%D7%98%D7%90&action=edit&section=" + section
+    url = "https://beta.wikiversity.org/w/index.php?title=%D7%9C%D7%99%D7%9E%D7%95%D7%93%D7%99%D7%9E%D7%97%D7%A9%D7%91%D7%99%D7%9D%D7%91%D7%A9%D7%99%D7%98%D7%AA%D7%91%D7%98%D7%90&action=edit&section=" + section
 
     r = requests.get(url, 'r')
 
@@ -19,13 +19,13 @@ def import_table(section, start_char1, start_char2, end_char1, end_char2, path):
             end_of_table_index = letter
             break
 
-    table = page[start_of_table_index:end_of_table_index]
+    page = page[start_of_table_index:end_of_table_index]
 
     with open(path, 'w') as file:
-        file.write(table)
+        file.write(page)
 
 
-def username_slice(table):
+def username_slice(page):
     usernames = {}
     break_point = 0
 
@@ -46,12 +46,6 @@ def read_file(path):
     return table_context
 
 
-def user_info(username, table_context):
-    index = table_context.find(username)
-
-    for row in range(len(table)):
-
-
 def main():
     import_table('14', '{', '|', '}', '|', 'page_context')
     table_context = read_file("page_context")
@@ -60,5 +54,5 @@ def main():
     print(usernames.keys())
 
 
-if __name__ == '__main__':
+if __name__ == 'main':
     main()
