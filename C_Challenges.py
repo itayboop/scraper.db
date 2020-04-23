@@ -23,4 +23,13 @@ for row in rows[1:]:
 	cells[i].append(row[3])
 	i += 1
 
-print(cells)
+
+for cell in range(len(cells)):
+	cells[cell] = str(cells[cell]).replace('<td>', '')
+	cells[cell] = str(cells[cell]).replace('</td>', '')
+	cells[cell] = cells[cell].split('\n')
+	cells[cell] = str(cells[cell]).replace("'[", '')
+	cells[cell] = str(cells[cell]).replace("]'", '')
+	cells[cell] = str(cells[cell]).replace("', '", '')
+
+print(cells[9])
