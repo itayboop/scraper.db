@@ -19,13 +19,20 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cbbfcf-3825-474c-8875-b3e99aae55f8" name="Default Changelist" comment="finished taking the information from the users except the titles and saving it on a dictionary, added a import subjects and points function">
+    <list default="true" id="b4cbbfcf-3825-474c-8875-b3e99aae55f8" name="Default Changelist" comment="taking users and challenges. works 100%.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -92,7 +99,14 @@
       <option name="presentableId" value="LOCAL‎00002" />
       <updated>1587412294636</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="taking users and challenges. works 100%.">
+      <created>1587683035687</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1587683035687</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -110,20 +124,23 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added first version from Rei Nagar" />
     <MESSAGE value="finished taking the information from the users except the titles and saving it on a dictionary, added a import subjects and points function" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished taking the information from the users except the titles and saving it on a dictionary, added a import subjects and points function" />
+    <MESSAGE value="taking users and challenges. works 100%." />
+    <option name="LAST_COMMIT_MESSAGE" value="taking users and challenges. works 100%." />
   </component>
   <component name="WindowStateProjectService">
     <state x="457" y="155" key="SettingsEditor" timestamp="1587399732113">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="457" y="155" key="SettingsEditor/0.0.1920.1044@0.0.1920.1044" timestamp="1587399732113" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1587412307593">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1587683044731">
+      <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1587412307593" />
-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587412300698">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1044/0.0.1920.1044@0.0.1920.1044" timestamp="1587683044731" />
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587683039054">
+      <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1587412300698" />
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1044/0.0.1920.1044@0.0.1920.1044" timestamp="1587683039054" />
   </component>
 </project>
