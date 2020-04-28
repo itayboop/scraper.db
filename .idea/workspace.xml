@@ -19,8 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4cbbfcf-3825-474c-8875-b3e99aae55f8" name="Default Changelist" comment="taking users and challenges. works 100%.">
+    <list default="true" id="b4cbbfcf-3825-474c-8875-b3e99aae55f8" name="Default Changelist" comment="not working yet, full file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/updated_scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/updated_scraper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,22 +47,23 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/updated_scraper.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
-    <configuration name="C_Challenges" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="updated_scraper" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="scraper.db" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\User\Desktop\python\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/C_Challenges.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/updated_scraper.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -72,7 +74,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.C_Challenges" />
+        <item itemvalue="Python.updated_scraper" />
       </list>
     </recent_temporary>
   </component>
@@ -106,7 +108,13 @@
       <option name="project" value="LOCAL" />
       <updated>1587683035687</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL‎00004" summary="not working yet, full file">
+      <created>1587927333265</created>
+      <option name="number" value="LOCAL‎00004" />
+      <option name="presentableId" value="LOCAL‎00004" />
+      <updated>1587927333265</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,22 +133,47 @@
     <MESSAGE value="added first version from Rei Nagar" />
     <MESSAGE value="finished taking the information from the users except the titles and saving it on a dictionary, added a import subjects and points function" />
     <MESSAGE value="taking users and challenges. works 100%." />
-    <option name="LAST_COMMIT_MESSAGE" value="taking users and challenges. works 100%." />
+    <MESSAGE value="not working yet, full file" />
+    <option name="LAST_COMMIT_MESSAGE" value="not working yet, full file" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="669" y="115" key="#C_Challenges" timestamp="1587927467115">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="669" y="115" key="#C_Challenges/0.0.1920.1040@0.0.1920.1040" timestamp="1587927467115" />
+    <state x="739" y="274" key="FileChooserDialogImpl" timestamp="1587927456207">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="739" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1587927456207" />
+    <state width="1899" height="28" key="GridCell.Tab.0.bottom" timestamp="1587993379303">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="28" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1587993379303" />
+    <state width="1899" height="28" key="GridCell.Tab.0.center" timestamp="1587993379302">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="28" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1587993379302" />
+    <state width="1899" height="28" key="GridCell.Tab.0.left" timestamp="1587993379302">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="28" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1587993379302" />
+    <state width="1899" height="28" key="GridCell.Tab.0.right" timestamp="1587993379303">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="28" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1587993379303" />
     <state x="457" y="155" key="SettingsEditor" timestamp="1587399732113">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="457" y="155" key="SettingsEditor/0.0.1920.1044@0.0.1920.1044" timestamp="1587399732113" />
-    <state x="552" y="254" key="Vcs.Push.Dialog.v2" timestamp="1587683044731">
-      <screen x="0" y="0" width="1920" height="1044" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1587927353155">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1587412307593" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1587927353155" />
     <state x="552" y="254" key="Vcs.Push.Dialog.v2/0.0.1920.1044/0.0.1920.1044@0.0.1920.1044" timestamp="1587683044731" />
-    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587683039054">
-      <screen x="0" y="0" width="1920" height="1044" />
+    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587927343790">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1587412300698" />
+    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1587927343790" />
     <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1044/0.0.1920.1044@0.0.1920.1044" timestamp="1587683039054" />
   </component>
 </project>
