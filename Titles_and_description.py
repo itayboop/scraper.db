@@ -2,14 +2,13 @@ import requests
 from bs4 import BeautifulSoup
 
 BLACK_MAGIC = 11
-PWN_GAME = 12
+PWN_GAME = 11
 START = 2
 END = 5
 
 
 def write_content(path: str, content: dict):
     """Writes the content of the found users and solved challenges to a file.
-
     :param path: where the file will be save.
     :type path: str
     :param content: the cotent to be written into the file.
@@ -19,31 +18,27 @@ def write_content(path: str, content: dict):
         file.writelines('\n')
 
 
-def get__descrip_title(titles):
+def get__description_title(titles):
     title_and_discription = list()
-    j = 0
-    context = list()
 
-    for i in range(3, len(titles) - 1):
-        title = titles[i].get_text()
+    for i in range(3, 12):
+        title = titles[i].text
         title = title.replace('[edit]', '')
 
         context = titles[i].find_next_sibling()
         if context.name == 'p':
-            context = context.get_text()
+            context = context.text.replace('\n', '')
             title_and_discription.append({'name': title, 'description': context})
-        else:
-            title_and_discription.append({'name': title, 'description': ''})
 
-    print(title_and_discription)
+    return title_and_discription
 
 
 def get_pwn_game(table, game_name: str) -> dict:
-    image = {}
+    image = dict()
     image['game'] = game_name
     image['ranks'] = []
 
-    for row in table.find_all('tr')[START:END]:
+    for row in table.find_all('tr'):
         pictures_attrs = row.find_all('img')
 
         for img in pictures_attrs:
@@ -63,9 +58,11 @@ def main():
     titles = soup.find_all('h2')
 
     pwn_game_content = get_pwn_game(tables[PWN_GAME], 'Game_of_Pwns')
-    write_content('/home/itay5245/pwn_game.txt', pwn_game_content)
+    write_content('pwn_game', pwn_game_content)
 
-    get__descrip_title(titles)
+    title_and_discription = get__descrip_title(titles)
+
+    write_content("t_d", title_and_discription)
 
 
 if __name__ == '__main__':
