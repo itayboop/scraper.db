@@ -16,7 +16,7 @@ USELESS_TABLE_2 = 20
 
 global g_users
 
-g_users = 	g_users = [{'status': 'ninja', 'users':[]},
+g_users = g_users = [{'status': 'ninja', 'users':[]},
 			{'status': 'active', 'users':[]},
 			{'status': 'zombie', 'users':[]},
 			{'status': 'pension', 'users':[]},
@@ -90,6 +90,7 @@ def pension_commemoration_info(table, table_index):
 
 		if not houses.a is None:
 			houses = [house['title'] for house in houses.find_all('a')] 
+			
 			g_users[table_index]['users'].append(dict({'name':name.text.replace('\n', ''), 'houses': houses}))
 		else:
 			g_users[table_index]['users'].append(dict({'name':name.text.replace('\n', ''), 'houses': []}))
@@ -115,7 +116,6 @@ def import_games(table) -> list:
 	:type table: bs4 element
 	:return: game table with the name of it and first 3 ranks.
 	:rtype: list
-
 	"""
 	ranks = list()
 
