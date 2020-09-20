@@ -246,6 +246,36 @@ def get_pwn_game(table, game_name: str) -> dict:
             continue
 
 
+def limbo_projects(main_projects_in_limbo):
+	project_info = list()
+
+	for row in main_projects_in_limbo.find_all('tr')[1:]:
+		project_name, contact, description, last_seen = row.find_all('td')
+		project_name = project_name.text.replace('\n', '')
+		contact = contact.text.replace('\n', ', ')
+		description = description.text.replace('\n', '')
+		last_seen = last_seen.text.replace('\n','')
+
+		project_info.append(dict({'project_name': project_name, 'contact': contact, 'description': description, 'last_seen': last_seen}))
+
+	return project_info
+
+
+def running_projects(main_projects_running):
+	project_info = list()
+
+	for row in main_projects_running.find_all('tr')[1:]:
+		project_name, participants, date_of_creation, dead_l = row.find_all('td')
+		project_name = project_name.text.replace('\n', '')
+		participants = participants.text.replace('\n', ', ')
+		date_of_creation = date_of_creation.text.replace('\n', '')
+		dead_l = dead_l.text.replace('\n', '')
+
+		project_info.append(dict({'project_name': project_name, 'participants': participants, 'date_of_creation': date_of_creation, 'dead_l': dead_l}))
+
+	return project_info
+
+
 def main():
 	main_page_url = "https://beta.wikiversity.org/wiki/%D7%9C%D7%99%D7%9E%D7%95%D7%93%D7%99_%D7%9E%D7%97%D7%A9%D7%91%D7%99%D7%9D_%D7%91%D7%A9%D7%99%D7%98%D7%AA_%D7%91%D7%98%D7%90"
 	
