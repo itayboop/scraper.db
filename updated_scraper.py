@@ -1,26 +1,28 @@
+import json
+import codecs
 import requests
 from os import mkdir
 from bs4 import BeautifulSoup
 
+LIMBO_PROJECTS_TABLE_INDEX = -1
 PWN_GAME_TABLE_INDEX = -5
 NINJAS_TABLE_INDEX = 0
 ACTIVES_TABLE_INDEX = 1
 ZOMBIES_TABLE_INDEX = 2
 PENSIONS_TABLE_INDEX = 3
 COMMEMORATION_TABLE_INDEX = 4
-TABLE_OFFSET = 16
-LAST_CHALLENGES_TABLE = 36
-USELESS_TABLE_1 = 18
-USELESS_TABLE_2 = 20
+TABLE_OFFSET = 15
+LAST_CHALLENGES_TABLE = 37
+USELESS_TABLE_1 = 17
+USELESS_TABLE_2 = 19
 
 
-global g_users
+g_users = [{'status': 'ninja', 'users': []},
+		   {'status': 'active', 'users': []},
+		   {'status': 'zombie', 'users': []},
+		   {'status': 'pension', 'users': []},
+		   {'status': 'commemoration', 'users': []}]
 
-g_users = g_users = [{'status': 'ninja', 'users':[]},
-			{'status': 'active', 'users':[]},
-			{'status': 'zombie', 'users':[]},
-			{'status': 'pension', 'users':[]},
-			{'status': 'commemoration', 'users':[]}]
 
 def soup_site(url):
 	r = requests.get(url)
@@ -28,7 +30,7 @@ def soup_site(url):
 	return BeautifulSoup(r.text, 'html.parser')
 
 
-def write_content(path: str, content: str):
+def write_content(path: str, content: dict):
 	"""Writes the content of the found users and solved challenges to a file.
 	:param path: where the file will be save.
 	:type path: str
@@ -36,8 +38,8 @@ def write_content(path: str, content: str):
 	"""
 	while True:
 		try:
-			with open(path, 'w') as file:
-				file.writelines(str(content))
+			with codecs.open(path, 'w', encoding='utf-8') as file:
+				json.dump(content, file, ensure_ascii=False)
 
 				break
 		except IOError:
@@ -60,6 +62,8 @@ def users_tables_organize(tables):
 	:param tables: all of the tables in the page.
 	:type tables: bs4 element.
 	"""
+	global g_users
+
 	ninja, active, zombie, pension, commemoration, *_ = tables
 	
 	ninja_active(ninja, NINJAS_TABLE_INDEX)
@@ -67,6 +71,9 @@ def users_tables_organize(tables):
 	zombie_info(zombie)
 	pension_commemoration_info(pension, PENSIONS_TABLE_INDEX)
 	pension_commemoration_info(commemoration, COMMEMORATION_TABLE_INDEX)
+
+	for s in g_users:
+		write_content("users\\" + s['status'] + ".json", s['users'])
 
 
 def ninja_active(table, table_index):
@@ -89,8 +96,8 @@ def pension_commemoration_info(table, table_index):
 		name, *_, houses = tr.find_all('td')
 
 		if not houses.a is None:
-			houses = [house['title'] for house in houses.find_all('a')] 
-			
+			houses = [house['title'] for house in houses.find_all('a')]
+
 			g_users[table_index]['users'].append(dict({'name':name.text.replace('\n', ''), 'houses': houses}))
 		else:
 			g_users[table_index]['users'].append(dict({'name':name.text.replace('\n', ''), 'houses': []}))
@@ -105,7 +112,7 @@ def games_tables_organize(tables):
 			{'name': 'python_slayer', 'ranks': []},
 			{'name': 'coffee_makers', 'ranks': []}]
 
-	*_, samorai_c, python_slayer, coffee_makers, _, _, _, _, _= tables
+	*_, samorai_c, python_slayer, coffee_makers, _, _, _, _= tables
 
 	for i, game_name in enumerate([samorai_c, python_slayer, coffee_makers]):
 		games[i]['ranks'] = import_games(game_name)
@@ -140,7 +147,7 @@ def import_challenges_organize(tables, challenges: list):
 			challenges[table - TABLE_OFFSET - (table > USELESS_TABLE_1) - (table > USELESS_TABLE_2)]['challenges'] = import_challenges(tables[table])
 
 	for challenge in challenges:
-		write_content("challenges_tables\\" + challenge['table_name'], challenge['challenges'])
+		write_content("challenges_tables\\" + challenge['table_name'] + ".json", challenge['challenges'])
 
 
 def import_challenges_table_name(soup) -> list:
@@ -150,6 +157,7 @@ def import_challenges_table_name(soup) -> list:
 	:return: list of the challenges names
 	:rtype: list
 	"""
+	challenges_table_names = list()
 	div_tags = soup.find_all('div', class_="mw-content-ltr")
 
 	for div_tag in div_tags:
@@ -206,7 +214,8 @@ def solved_challenges_table_organize():
 		challenges_and_solvers = import_solved_challenges(tables[table_name])
 		solved_challenges.append({'subject': table_names[table_name], 'challenges': challenges_and_solvers})
 
-	write_content('solved_challenges.txt', str(solved_challenges))
+	for solved_challenge in solved_challenges:
+		write_content('solved_challenges.json', solved_challenge)
 
 
 def import_solved_challenges(table) -> list:
@@ -227,53 +236,38 @@ def import_solved_challenges(table) -> list:
 	return solved_challenges_table
 
 
-def get_pwn_game(table, game_name: str) -> dict:
-    ninja_games_ranks = list()
+def get_pwn_game(table):
+	ninja_games_ranks = list()
 
-    for row in table.find_all('tr')[1:]:
-        try:
-            _, image, *_ = row.find_all('td')
+	for row in table.find_all('tr')[1:]:
+		try:
+			_, image, *_ = row.find_all('td')
 
-            title = image.a['title']
-            image_url = 'https:' + image.img['src']
-        
-            r = requests.get(image_url)
+			title = image.a['title']
+			image_url = 'https:' + image.img['src']
 
-            download_image(r.content, title)
+			r = requests.get(image_url)
 
-            ninja_games_ranks.append(dict({'title': title, 'image': r.content}))
-        except TypeError:
-            continue
+			download_image(r.content, title)
+
+			ninja_games_ranks.append(dict({'title': title, 'image': r.content}))
+		except TypeError:
+			continue
 
 
-def limbo_projects(main_projects_in_limbo):
-	project_info = list()
+def limbo_projects(main_projects_in_limbo_table):
+	projects = list()
 
-	for row in main_projects_in_limbo.find_all('tr')[1:]:
+	for row in main_projects_in_limbo_table.find_all('tr')[1:]:
 		project_name, contact, description, last_seen = row.find_all('td')
 		project_name = project_name.text.replace('\n', '')
 		contact = contact.text.replace('\n', ', ')
 		description = description.text.replace('\n', '')
 		last_seen = last_seen.text.replace('\n','')
 
-		project_info.append(dict({'project_name': project_name, 'contact': contact, 'description': description, 'last_seen': last_seen}))
+		projects.append(dict({'project_name': project_name, 'contact': contact, 'description': description, 'last_seen': last_seen}))
 
-	return project_info
-
-
-def running_projects(main_projects_running):
-	project_info = list()
-
-	for row in main_projects_running.find_all('tr')[1:]:
-		project_name, participants, date_of_creation, dead_l = row.find_all('td')
-		project_name = project_name.text.replace('\n', '')
-		participants = participants.text.replace('\n', ', ')
-		date_of_creation = date_of_creation.text.replace('\n', '')
-		dead_l = dead_l.text.replace('\n', '')
-
-		project_info.append(dict({'project_name': project_name, 'participants': participants, 'date_of_creation': date_of_creation, 'dead_l': dead_l}))
-
-	return project_info
+	write_content("projects\\limbo_projects.json", projects)
 
 
 def main():
@@ -288,7 +282,8 @@ def main():
 	games_tables_organize(main_tables)
 	solved_challenges_table_organize()
 	import_challenges_organize(challenges_tables, challenges)
-	get_pwn_game(main_tables[PWN_GAME_TABLE_INDEX], 'Game_of_Pwns')
+	get_pwn_game(main_tables[PWN_GAME_TABLE_INDEX])
+	limbo_projects(main_tables[LIMBO_PROJECTS_TABLE_INDEX])
 
 
 if __name__ == '__main__':
